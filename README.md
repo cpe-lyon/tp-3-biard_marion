@@ -106,14 +106,9 @@ Nous exécutons la commande suivante :
 apt list --manual-installed
 ```
 En retour, nous obtenons :
-```bash
-En train de lister...Fait
-base-passwd/eoan,now 3.5.46 amd64 [installé]
-bash/eoan,now 5.0-4ubuntu1 amd64 [installé]
-cloud-init/eoan-updates,now 19.4-33-gbb4131a2-Oubuntu1~19.10.1 all [installé]
-
-```
-![manual installed](https://github.com/cpe-lyon/tp-3-biard_marion/blob/master/manual-insttaled.png)
+<p align="center">
+  <img src="https://github.com/cpe-lyon/tp-3-biard_marion/blob/master/manual-insttaled.png">
+</p>
 
 &nbsp;
 
