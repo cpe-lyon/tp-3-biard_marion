@@ -113,7 +113,7 @@ bash/eoan,now 5.0-4ubuntu1 amd64 [installé]
 cloud-init/eoan-updates,now 19.4-33-gbb4131a2-Oubuntu1~19.10.1 all [installé]
 
 ```
-![manual installed](https://github.com/cpe-lyon/tp-3-biard_marion/blob/master/manual-installed.png)
+![manual installed](https://github.com/cpe-lyon/tp-3-biard_marion/blob/master/manual-insttaled.png)
 
 &nbsp;
 
