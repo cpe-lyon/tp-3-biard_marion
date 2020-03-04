@@ -115,18 +115,45 @@ apt list --manual-installed
 
 **1. A partir de quel paquet est installée la commande ls ?**
 
-*GNU coreutils*
+La commande ls est installée à partir du parquet : *GNU coreutils*.
 
-**2. Comment obtenir cette information en une seule
-commande, pour n’importe quel programme (indice : la réponse est dans le poly de cours 2, dans la liste des
-commandes utiles) ?**
+Pour savoir cela, il faut tout d'abord taper la commande :
+```bash
+which -a ls
+```
+qui nous affiche le chemin absolu de la commande *ls*.
 
-*Réponse*
+> Dans notre cas, il existe deux commande *ls*, ce qui signifie que nous aurons deux retours.
 
-**3. Utilisez la réponse à pour écrire un script appelé origine-commande (sans l’extension
-.sh) prenant en argument le nom d’une commande, et indiquant quel paquet l’a installée.**
+Une fois que nous avons le chemin de la commande qui nous intéresse, ici */bin/ls*, nous exécutons la commande :
+```bash
+dpkg -S /bin/ls
+```
+Cette commande nous retourne donc que la commande *ls* fait parti du package *coreutils*.
 
-*Réponse*
+&nbsp;
+
+**2. Comment obtenir cette information en une seule commande, pour n’importe quel programme (indice : la réponse est dans le poly de cours 2, dans la liste des commandes utiles) ?**
+
+Afin d'obtenir cette information en une seule commande pour n'importe quel programme, il faut utiliser la commande :
+```bash
+which -a programme | xargs dpkg -S 2>/dev/null
+```
+où nous pouvons remplacer *programme* par le programme dont nous souhaitons connaitre le package d'installation
+
+> **xargs** permet de récuperer les résultats de la première commande et de les passer en arguments de la deuxième.
+> **2>/dev/null** permet de supprimer les erreurs de résultats.
+
+&nbsp;
+
+**3. Utilisez la réponse à pour écrire un script appelé origine-commande (sans l’extension.sh) prenant en argument le nom d’une commande, et indiquant quel paquet l’a installée.**
+
+Le script à écrire est le suivant :
+```bash
+#!/bin/bash
+
+echo $(which -a $1 | xargs dpkg -S 2>/dev/null)
+```
 
 &nbsp;
 
@@ -139,7 +166,17 @@ commandes utiles) ?**
 **Ecrire une commande qui affiche “INSTALLÉ” ou “NON INSTALLÉ” selon le nom et le statut du package
 spécifié dans cette commande.**
 
-*Réponse*
+```bash
+#!/bin/bash
+
+dpkg -s $1 &>/dev/null
+
+if [ $? -eq 0 ]; then
+  echo "INSTALLE"
+else
+  echo "NON INSTALLE"
+fi
+```
 
 &nbsp;
 
