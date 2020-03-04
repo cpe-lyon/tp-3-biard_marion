@@ -101,9 +101,19 @@ sudo apt install fortune
 
 **7. Lister les derniers paquets installés explicitement avec la commande apt install**
 
+Nous exécutons la commande suivante :
 ```bash
 apt list --manual-installed
 ```
+En retour, nous obtenons :
+```bash
+En train de lister...Fait
+base-passwd/eoan,now 3.5.46 amd64 [installé]
+bash/eoan,now 5.0-4ubuntu1 amd64 [installé]
+cloud-init/eoan-updates,now 19.4-33-gbb4131a2-Oubuntu1~19.10.1 all [installé]
+
+```
+![manual installed](https://github.com/cpe-lyon/tp-3-biard_marion/blob/master/manual-installed.png)
 
 &nbsp;
 
@@ -166,6 +176,7 @@ echo $(which -a $1 | xargs dpkg -S 2>/dev/null)
 **Ecrire une commande qui affiche “INSTALLÉ” ou “NON INSTALLÉ” selon le nom et le statut du package
 spécifié dans cette commande.**
 
+Nous avons préféré le faire à l'aide d'un script :
 ```bash
 #!/bin/bash
 
@@ -176,6 +187,11 @@ if [ $? -eq 0 ]; then
 else
   echo "NON INSTALLE"
 fi
+```
+
+Nous pouvons également le faire à l'aide d'une ligne de commande :
+```bash
+A REMPLIS
 ```
 
 &nbsp;
