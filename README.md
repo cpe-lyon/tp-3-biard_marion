@@ -48,15 +48,17 @@ apt list -- installed | wc -l
 ```
 Le résultat est : 573
 
-La différence est due au fait qu'au début de la liste affichée par apt, il y a une ligne : ```En train de lister...```
+La différence est due au fait qu'au début de la liste affichée par apt, il y a une ligne qui nous informe que apt est en train de lister tous les paquets : ```En train de lister...```
 
 &nbsp;
 
 **3. Combien de paquets sont disponibles en téléchargement ?**
 
+On utilise la commande :
+```bash
 apt list | wc -l
-
-61599
+```
+On obtient donc comme résultat 61599 paquets que nous pouvons télécharger
 
 &nbsp;
 
@@ -90,12 +92,14 @@ sudo apt install fortune
 
 **6. Quels paquets proposent de jouer au sudoku ?**
 
-> Les paquets proposant de jouer au sudoku sont :
-- xenial
-- bionic
-- disco
-- eoan
-- focal
+On exécute la commande :
+```bash
+apt list | grep "sudoku"
+```
+On obtient en retour 3 paquets qui nous permettent de jouer au sudoku :
+- gnome-sudoku
+- ksudoku
+- sudoku
 
 &nbsp;
 
@@ -186,7 +190,7 @@ fi
 
 Nous pouvons également le faire à l'aide d'une ligne de commande :
 ```bash
-A REMPLIS
+(dpkg -l "nom-package" | grep "^ii") && echo "INSTALLE" || echo "NON INSTALLE"
 ```
 
 &nbsp;
@@ -200,6 +204,26 @@ A REMPLIS
 **Lister les programmes livrés avec coreutils. A quoi sert la commande ’[’ et comment afficher ce qu’elle
 retourne ?**
 
+On utilise la commande :
+```bash
+apt show coreutils
+```
+En réponse, onn obtient :
+```bash
+Précisement, ce paquet comprend : arch base64 basename cat chcon chgrp
+chmod chown chroot cksum comm cp csplit cut date dd df dir dircolors
+dirname du echo env expand expr factor false flock fmt fold groups head
+hostid id install join link ln logname ls md5sum mkdir mkfifo mknod mktemp
+mv nice nl nohup nproc numfmt od paste pathchk pinky pr printenv printf
+ptx pwd readlink realpath rm rmdir runcon sha*sum seq shred sleep sort
+split stat stty sum sync tac tail tee test timeout touch tr true truncate
+tsort tty uname unexpand uniq unlink users vdir wc who whoami yes
+```
+
+La commande **[** permet comparer des chaines de caractères, des nombres et vérifier certaines propriétés de fichiers. Il s'agit de l'écriture simplifiée de la commande **test**.
+
+On peut afficher le résultat avec la commande : **echo $[....]**.
+
 &nbsp;
 
 ***
@@ -209,6 +233,25 @@ retourne ?**
 ### Exercice 5 : aptitude
 
 **Installez le paquet emacs à l’aide de la version graphique d’aptitude**
+
+Tout d'abord, on installe le paquet aptitude :
+```bash
+sudo apt install aptitude
+```
+
+Ensuite, on lance aptitude en tant que superutilisateur:
+```bash
+sudo aptitude
+```
+Ensuite, on effectue une recherche en appuyant sur **/** (shift + :).
+
+Dans la barre de recherche, on écrit : **^emacs**.
+
+On sélectionne le paquet en appuyant sur **+**.
+
+Enfin un appuye une première fois sur **g** et une deuxième fois sur **g**.
+
+L'installation se lance et à la fin il faut soit appuyer sur la touche **Entrée** pour continuer sur aptitude, soit sur **q** puis sur **Entrée** afin de quitter aptitude.
 
 &nbsp;
 
@@ -245,21 +288,25 @@ programmes que vous écrivez comme s’ils provenaient de dépôts officiels.**
 sous-dossier DEBIAN, ainsi que l’arborescence usr/local/bin où vous placerez le script écrit à l’exercice
 2**
 
+```bash
+mkdir origine-commande
+cd origine-commande/
+mkdir DEBIAN
+cd DEBIAN/
+mkdir usr/local/bin -p
+```
+
 **2. Dans le dossier DEBIAN, créez un fichier control avec les champs suivants :
 
-**Package: origine-commande #nom du paquet**
-
-**Version: 0.1 #numéro de version**
-
-**Maintainer: Foo Bar #votre nom**
-
-**Architecture: all #les architectures cibles de notre paquet (i386, amd64...)**
-
-**Description: Cherche l'origine d'une commande**
-
-**Section: utils #notre programme est un utilitaire**
-
-**Priority: optional #ce n'est pas un paquet indispendable**
+```bash
+Package: origine-commande #nom du paquet
+Version: 0.1 #numéro de version
+Maintainer: Foo Bar #votre nom
+Architecture: all #les architectures cibles de notre paquet (i386, amd64...)
+Description: Cherche l'origine d'une commande
+Section: utils #notre programme est un utilitaire
+Priority: optional #ce n'est pas un paquet indispendable
+```
 
 **3. Revenez dans le dossier parent de origine-commande (normalement, c’est votre $HOME) et tapez la
 commande suivante pour construire le paquet :**
