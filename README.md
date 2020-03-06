@@ -58,7 +58,7 @@ On utilise la commande :
 ```bash
 apt list | wc -l
 ```
-On obtient donc comme résultat 61599 paquets que nous pouvons télécharger
+On obtient donc comme résultat 61599 paquets que nous pouvons télécharger.
 
 &nbsp;
 
@@ -101,7 +101,10 @@ On obtient en retour 3 paquets qui nous permettent de jouer au sudoku :
 - ksudoku
 - sudoku
 
-&nbsp;
+> Nous pouvons également utiliser la commande: *apt search sudoku*. Dans ce cas, nous obtenons en réponse :
+<p align="center">
+  <img src="https://github.com/cpe-lyon/tp-3-biard_marion/blob/master/sudoku.png">
+</p>
 
 **7. Lister les derniers paquets installés explicitement avec la commande apt install**
 
@@ -266,7 +269,7 @@ L'installation se lance et à la fin il faut soit appuyer sur la touche **Entré
 ```bash
 sudo add-apt-repository ppa:linuxuprising/java
 sudo apt update
-sudo apt install oracle-java11-installer
+sudo apt install oracle-java11-installer-local
 ```
 
 **2. Vérifiez qu’un nouveau fichier a été créé dans /etc/apt/sources.list.d. Que contient-il ?**
@@ -282,6 +285,8 @@ Dans ce fichier, on retrouve les addresse pour mettre à jour le ppa :
 deb http://ppa.launchpad.net/linuxuprising/java/ubuntu bionic main
 # deb-src http://ppa.launchpad.net/linuxuprising/java/ubuntu bionic main 
 ```
+> Nous avons tout de même un message qui nous dit à la fin de *sudo apt install oracle-java11-installer-local* qu'il y a une erreur en retour. Nous pensons que cela nous a surement bloqué pour certaines choses par la suite.
+
 &nbsp;
 
 ***
