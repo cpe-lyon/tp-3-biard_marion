@@ -103,7 +103,7 @@ On obtient en retour 3 paquets qui nous permettent de jouer au sudoku :
 
 > Nous pouvons également utiliser la commande: *apt search sudoku*. Dans ce cas, nous obtenons en réponse :
 <p align="center">
-  <img src="https://github.com/cpe-lyon/tp-3-biard_marion/blob/master/sudoku.png">
+  <img src="https://github.com/cpe-lyon/tp-3-biard_marion/blob/master/images/sudoku.png">
 </p>
 
 **7. Lister les derniers paquets installés explicitement avec la commande apt install**
@@ -114,7 +114,7 @@ apt list --manual-installed
 ```
 En retour, nous obtenons :
 <p align="center">
-  <img src="https://github.com/cpe-lyon/tp-3-biard_marion/blob/master/manual-insttaled.png">
+  <img src="https://github.com/cpe-lyon/tp-3-biard_marion/blob/master/images/manual-insttaled.png">
 </p>
 
 &nbsp;
