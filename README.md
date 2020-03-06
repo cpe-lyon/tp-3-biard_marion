@@ -471,6 +471,8 @@ peu d’aide : pour résoudre le problème de la macro AM_GNU_GETTEXT manquante,
 gettext). Relancez la commande `autoreconf -i` après chaque paquet installé jusqu’à ce
 qu’elle se termine sans erreur.**
 
+> En voulant suivre les directives du fichier README pour installer, nous avons eu des erreurs dûes à java.
+
 **3. Exécutez le script configure**
 
 **4. Normalement, à cette étape on exécute la commande make install, qui procède à la compilation
