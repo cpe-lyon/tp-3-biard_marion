@@ -271,6 +271,17 @@ sudo apt install oracle-java11-installer
 
 **2. Vérifiez qu’un nouveau fichier a été créé dans /etc/apt/sources.list.d. Que contient-il ?**
 
+Nous allons dans ce dossier :
+```bash
+cd /etc/apt/sources.list.d
+```
+On observe qu'il y a un fichier qui a été créé : le fichier **linuxuprisin-ubuntu-java-eoan.list**.
+
+Dans ce fichier, on retrouve les addresse pour mettre à jour le ppa :
+```bash
+deb http://ppa.launchpad.net/linuxuprising/java/ubuntu bionic main
+# deb-src http://ppa.launchpad.net/linuxuprising/java/ubuntu bionic main 
+```
 &nbsp;
 
 ***
@@ -317,37 +328,56 @@ dpkg-deb --build origine-commande
 
 **Félicitations ! Vous avez créé votre propre paquet !**
 
+&nbsp;
+
 #### Création du dépôt personnel avec reprepro
 
 **1. Dans votre dossier personnel, commencez par créer un dossier repo-cpe. Ce sera la racine de votre
 dépôt**
 
+```bash
+mkdir repo-cpe
+cd repo-cpe/
+```
+
 **2. Ajoutez-y deux sous-dossiers : conf (qui contiendra la configuration du dépôt) et packages (qui contiendra
 nos paquets)**
 
+```bash
+mkdir conf 
+mkdir package
+```
+
 **3. Dans conf, créez le fichier distributions suivant :**
 
-**Origin: Un nom, une URL, ou tout texte expliquant la provenance du dépôt**
-
-**Label: Nom du dépôt**
-
-**// Suite: stable**
-
-**Codename: cosmic #le nom de la distribution cible**
-
-**Architectures: i386 amd64 #(architectures cibles)**
-
-**Components: universe #(correspond à notre cas)**
-
-**Description: Une description du dépôt**
+On exécute la commande :
+```bash
+nano conf/distributions
+```
+Et on écrit dedans :
+```bash
+Origin: Un nom, une URL, ou tout texte expliquant la provenance du dépôt
+Label: Nom du dépôt
+// Suite: stable
+Codename: cosmic #le nom de la distribution cible
+Architectures: i386 amd64 #(architectures cibles)
+Components: universe #(correspond à notre cas)
+Description: Une description du dépôt
+```
 
 **4. Dans le dossier repo-cpe, générez l’arborescence du dépôt avec la commande
 reprepro -b . export**
 
+```bash
+reprepro -b . export
+```
+
+> Lorsque nous essayons d'exécuter cett commande, nous avons une erreur que nous n'avons pas réussi à corriger (*Error parsing ./conf/distributions, line3: Unexpected space in header name!*)
+
 **5. Copiez le paquet origine-commande.deb créé précédemment dans le dossier packages du dépôt, puis,
 à la racine du dépôt, exécutez la commande**
 
-```
+```bash
 reprepro -b . includedeb cosmic origine-commande.deb
 ```
 
@@ -357,7 +387,7 @@ reprepro -b . includedeb cosmic origine-commande.deb
 Pour cela, créez (avec sudo) dans le dossier /etc/apt/sources.list.d le fichier repo-cpe.list
 contenant :**
 
-```
+```bash
 deb file:/home/VOTRE_NOM/repo-cpe cosmic multiverse
 ```
 
@@ -389,7 +419,7 @@ SignWith: yes**
 
 **3. Ajoutez la clé à votre dépôt :**
 
-```
+```bash
 reprepro --ask-passphrase -b . export
 ```
 
@@ -410,6 +440,8 @@ sudo apt-key add public.key
 
 **Félicitations ! La configuration est (enfin) terminée ! Vérifiez que vous pouvez installer votre paquet comme
 n’importe quel autre paquet.**
+
+&nbsp;
 
 ### Exercice 8 :  Installation d’un logiciel à partir du code source
 
@@ -442,3 +474,7 @@ dans notre cas, on va demander à checkinstall de s’en charger et de créer un
 sudo checkinstall
 Le logiciel est à présent installé (exécutez nudoku pour vous en assurer) ; on peut vérifier par exemple
 avec aptitude qu’il provient bien du paquet qu’on a créé avec checkinstall.**
+
+```bash
+sudo checkinstall
+```
